@@ -45,7 +45,10 @@
       "height": "250px",
       "panels": [
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "measurement.mean": "#0A437C",
+            "measurement.mean {hostname: ali53xl}": "#508642"
+          },
           "bars": false,
           "datasource": "${DS_PLANCTON-MONITOR}",
           "editable": true,
@@ -64,7 +67,7 @@
             "current": true,
             "max": true,
             "min": true,
-            "rightSide": true,
+            "rightSide": false,
             "show": true,
             "total": false,
             "values": true
@@ -77,7 +80,12 @@
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
+          "seriesOverrides": [
+            {
+              "alias": "measurement.mean",
+              "yaxis": 1
+            }
+          ],
           "span": 12,
           "stack": false,
           "steppedLine": false,
@@ -87,17 +95,18 @@
               "groupBy": [
                 {
                   "params": [
-                    "1s"
+                    "5m"
                   ],
                   "type": "time"
                 },
                 {
                   "params": [
-                    "null"
+                    "hostname"
                   ],
-                  "type": "fill"
+                  "type": "tag"
                 }
               ],
+              "hide": false,
               "measurement": "measurement",
               "policy": "default",
               "refId": "A",
@@ -116,13 +125,7 @@
                   }
                 ]
               ],
-              "tags": [
-                {
-                  "key": "hostname",
-                  "operator": "=",
-                  "value": "ali55xl"
-                }
-              ]
+              "tags": []
             }
           ],
           "timeFrom": null,
@@ -156,7 +159,8 @@
               "min": null,
               "show": true
             }
-          ]
+          ],
+          "height": "400"
         }
       ],
       "title": "New row"
@@ -167,7 +171,9 @@
       "height": "250px",
       "panels": [
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "measurement.sum": "#890F02"
+          },
           "bars": true,
           "datasource": "${DS_PLANCTON-MONITOR}",
           "editable": true,
@@ -187,7 +193,7 @@
             "current": true,
             "max": true,
             "min": true,
-            "rightSide": true,
+            "rightSide": false,
             "show": true,
             "total": false,
             "values": true
@@ -202,7 +208,7 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 12,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -211,9 +217,15 @@
               "groupBy": [
                 {
                   "params": [
-                    "auto"
+                    "30s"
                   ],
                   "type": "time"
+                },
+                {
+                  "params": [
+                    "previous"
+                  ],
+                  "type": "fill"
                 }
               ],
               "measurement": "measurement",
@@ -230,7 +242,7 @@
                   },
                   {
                     "params": [],
-                    "type": "distinct"
+                    "type": "sum"
                   }
                 ]
               ],
@@ -269,17 +281,11 @@
               "show": false
             }
           ]
-        }
-      ],
-      "title": "New row"
-    },
-    {
-      "collapse": false,
-      "editable": true,
-      "height": "250px",
-      "panels": [
+        },
         {
-          "aliasColors": {},
+          "aliasColors": {
+            "container.mean": "#E5A8E2"
+          },
           "bars": false,
           "datasource": "${DS_PLANCTON-MONITOR}",
           "editable": true,
@@ -298,7 +304,7 @@
             "current": true,
             "max": true,
             "min": true,
-            "rightSide": true,
+            "rightSide": false,
             "show": true,
             "total": false,
             "values": true
@@ -312,7 +318,7 @@
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "span": 12,
+          "span": 6,
           "stack": false,
           "steppedLine": false,
           "targets": [
@@ -321,7 +327,7 @@
               "groupBy": [
                 {
                   "params": [
-                    "auto"
+                    "5m"
                   ],
                   "type": "time"
                 },
@@ -353,12 +359,6 @@
               ],
               "tags": [
                 {
-                  "key": "hostname",
-                  "operator": "=",
-                  "value": "ali55xl"
-                },
-                {
-                  "condition": "AND",
                   "key": "started",
                   "operator": "=",
                   "value": "True"
@@ -404,7 +404,7 @@
     }
   ],
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -440,7 +440,7 @@
   },
   "refresh": false,
   "schemaVersion": 12,
-  "version": 13,
+  "version": 33,
   "links": [],
   "gnetId": null
 }
